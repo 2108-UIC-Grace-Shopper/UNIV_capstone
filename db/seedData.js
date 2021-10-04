@@ -10,6 +10,7 @@ async function dropTables() {
       DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS users;
     `)
+    console.log("---tables dropped---")
     } catch (error) {
       throw error; 
     }
@@ -44,16 +45,32 @@ async function dropTables() {
           id SERIAL PRIMARY KEY,
           “userId” INTEGER REFERENCES users(id),
           status BOOLEAN DEFAULT FALSE,
-    
       )
       `)
       await client.query(`
-      CREATE TABLE orders_prodcuts(
+      CREATE TABLE orders_products(
           id SERIAL PRIMARY KEY
       )
       `)
+      console.log("---tables built---")
     } catch (error) {
         throw error;
       }
+  }
+
+    async function rebuildDB(){
+      try{
+        client.connect()
+        await dropTables()
+        await createTables()
+      }
+      catch(error){
+        console.log("---error rebuildDb---")
+        throw(error)
+      }
+    }
+
+    module.exports = {
+      rebuildDB
     }
     

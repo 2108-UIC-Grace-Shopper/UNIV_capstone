@@ -6,4 +6,4 @@ const client = new Client({
     connectionString
 })
 
-modules.export = client
+module.exports = client
