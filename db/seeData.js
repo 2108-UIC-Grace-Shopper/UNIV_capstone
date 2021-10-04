@@ -35,19 +35,25 @@ async function dropTables() {
           description TEXT NOT NULL,
           price MONEY,
           size VARCHAR(255) UNIQUE NOT NULL,
-          color VARCHAR(255) UNIQUE NOT NULL
-          "availability" BOOLEAN DEFAULT TRUE
+          color VARCHAR(255) UNIQUE NOT NULL,
+          availability BOOLEAN DEFAULT TRUE,
+          image TEXT
             )`)
       await client.query(`
       CREATE TABLE orders(
-
+          id SERIAL PRIMARY KEY,
+          “userId” INTEGER REFERENCES users(id),
+          status BOOLEAN DEFAULT FALSE,
+    
       )
       `)
-     
-    
-    
+      await client.query(`
+      CREATE TABLE orders_prodcuts(
+          id SERIAL PRIMARY KEY
+      )
+      `)
     } catch (error) {
-        throw error; 
+        throw error;
       }
     }
     
