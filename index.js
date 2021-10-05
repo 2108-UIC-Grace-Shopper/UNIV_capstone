@@ -13,6 +13,14 @@ server.use('/api',apiRouter)
 const client = require("./db/client")
 client.connect()
 
+server.use((error,req,res,next)=>{
+    console.error("SERVER ERROR: ",error)
+    res.send({
+        name: error.name,
+        message: error.message
+    })
+})
+
 server.listen(PORT,()=>{
     console.log("the server is up on port",PORT)
 })
