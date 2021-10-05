@@ -4,20 +4,19 @@ const {getUserById}=require('../db')
 const {client} = require('../db/client')
 const jwt = require('jsonwebtoken')
 
-apiRouter.get("/health", (req,res,next)=>{
-    res.send ({message:"everything is awesome"})
-})
 
 //setting up user check
 apiRouter.use(async (req,res,next)=>{
     const prefix = "Bearer "
     const auth = req.header("Authorization")
+    //console.log("auth: ",auth)
 
     if(!auth){ //if there is no auth in the header then skip
         next()
     }
     else if(auth.startsWith(prefix)){ //if auth starts with "Bearer "
         const token = auth.slice(prefix.length) //slice off "Bearer " which should leave us with a token
+        //console.log("token: ",token)
         try{
             const {id} = jwt.verify(token, JWT_SECRET) //creates id which uses jwt verify to get the user id from the token
             if(id){ //if id is truthy than store the results of getUserById for the id in req.user
@@ -42,6 +41,17 @@ apiRouter.use((req,res,next)=>{ //user this for all routes
         console.log("user is set", req.user)
     }
     next()
+})
+
+apiRouter.get("/health", (req,res,next)=>{
+    try{
+        
+    }
+    catch(error){
+        console.log("no user-everything is healthy")
+        res.send ({message:"no user-everything is healthy"})
+    }
+    
 })
 
 const usersRouter = require('./users') //set route for /api/users
