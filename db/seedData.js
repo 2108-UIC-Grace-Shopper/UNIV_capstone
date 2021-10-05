@@ -41,11 +41,16 @@ async function createTables() {
            )`)
     await client.query(`
       CREATE TABLE orders(
-         id SERIAL PRIMARY KEY
+         id SERIAL PRIMARY KEY,
+         "usersId" INTEGER REFERENCES users(id),
+         status BOOLEAN DEFAULT false
          )`)
     await client.query(`
         CREATE TABLE orders_products(
-          id SERIAL PRIMARY KEY
+          id SERIAL PRIMARY KEY,
+          "orderId" INTEGER REFERENCES orders(id),
+          "productId" INTEGER REFERENCES products(id),
+          quantity INTEGER
         )`)   
             
       console.log("---tables built---")
