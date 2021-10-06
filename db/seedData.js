@@ -1,4 +1,4 @@
-const { createUser } = require('./')
+const { createUser, createProduct, createOrder} = require('./')
 const client = require("./client")
 
 async function dropTables() {
@@ -77,12 +77,53 @@ async function createInitialUsers() {
   }
 }
 
+async function createInitialProduct(){
+  console.log('Creating Product')
+  try{
+      const productsToCreate = [
+        {name: 'Specialized - Tarmac', 
+        description: 'Road', 
+        price: 5800, 
+        size: 'medium', 
+        color: 'White', 
+        availability: true,
+        image: 'https://assets.specialized.com/i/specialized/90622-51_TARMAC-SL7-COMP-METWHTSIL-SMK_HERO?bg=rgb(241,241,241)&w=1600&h=900&fmt=auto'}
+      ]
+    const products = await Promise.all(productsToCreate.map(createProduct))  
+    console.log(products)
+    console.log('--- product created ---')
+  } catch (error){
+    console.log('ERROR @ createInitialProduct')
+    throw error
+  }
+}
+
+async function createInitialOrders() {
+  console.log('Creating orders')
+  try{
+ 
+    const orderToCreate = [
+      { usersId: 1, status: false},
+      { usersId: 2, status: false}
+
+    ]
+    const users = await Promise.all(orderToCreate.map(createOrder))
+    console.log(users)
+    console.log('--- Order created ---')
+  } catch (error){
+    console.log('Error @ Function createInitialOrder')
+    throw error
+  }
+}
+
 async function rebuildDB(){
   try{
     client.connect()
     await dropTables()
     await createTables()
-    await createInitialUsers()
+    await createInitialUsers(),
+    await createInitialProduct(),
+    await createInitialOrders()
       }
 catch(error){
     console.log("---error rebuildDb---")
