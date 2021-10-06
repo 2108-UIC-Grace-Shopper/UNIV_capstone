@@ -1,4 +1,4 @@
-const { createUser, createProduct} = require('./')
+const { createUser, createProduct, createOrder} = require('./')
 const client = require("./client")
 
 async function dropTables() {
@@ -98,13 +98,32 @@ async function createInitialProduct(){
   }
 }
 
+async function createInitialOrders() {
+  console.log('Creating orders')
+  try{
+ 
+    const orderToCreate = [
+      { usersId: 1, status: false},
+      { usersId: 2, status: false}
+
+    ]
+    const users = await Promise.all(orderToCreate.map(createOrder))
+    console.log(users)
+    console.log('--- Order created ---')
+  } catch (error){
+    console.log('Error @ Function createInitialOrder')
+    throw error
+  }
+}
+
 async function rebuildDB(){
   try{
     client.connect()
     await dropTables()
     await createTables()
     await createInitialUsers(),
-    await createInitialProduct()
+    await createInitialProduct(),
+    await createInitialOrders()
       }
 catch(error){
     console.log("---error rebuildDb---")

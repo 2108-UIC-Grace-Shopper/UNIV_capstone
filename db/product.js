@@ -13,7 +13,7 @@ async function createProduct({name, description, price, size, color, availabilit
             image)
         VALUES ($1,$2,$3,$4,$5,$6,$7)
         ON CONFLICT (name) DO NOTHING
-        RETURNING name, description, price, size, color, availability, image  
+        RETURNING * 
         `,[name, description, price, size, color, availability, image])
     
       return  product     
@@ -22,8 +22,6 @@ async function createProduct({name, description, price, size, color, availabilit
         throw error
     }
 }
-
-
 
 async function getAllProducts(){
     try{
@@ -50,9 +48,22 @@ async function getProductById(id) {
     }
 }
 
+async function getProductByName(name){
+    try{    
+        const {rows: [product]} = await client.query(`
+        SELECT * FROM products
+        WHERE name = $1
+        `,[name])
+        return product
+    } catch(error){
+        console.log('ERROR @ getProductByName FUNCTION')
+        throw error
+    }
+}
 
 module.exports = {
     createProduct,
     getAllProducts,
-    getProductById
+    getProductById,
+    getProductByName
 }
