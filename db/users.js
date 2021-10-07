@@ -62,7 +62,7 @@ async function getUserByUsername(username) {
         WHERE username = $1
         `, [username])
 
-        if (!user || !user.length) {
+        if (!user) {
             return null
         }
         return user
