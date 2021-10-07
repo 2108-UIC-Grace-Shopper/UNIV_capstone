@@ -1,4 +1,4 @@
-dropbtn {
+  .dropbtn {
     background-color: #04AA6D;
     color: white;
     padding: 60px;
@@ -45,3 +45,49 @@ dropbtn {
   header {
       background-color: #04AA6D;
   }
+  .homePageimg {
+      width: 100%;
+      height: auto;
+  }
+/* Login screen css */
+  body{
+    justify-content: center;
+}
+form {
+display: flex;
+border: 50px solid #f1f1f1;
+justify-content: center;
+}
+input[type=text], input[type=password] {
+width: 50%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+button {
+background-color: #04AA6D;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 50%;
+}
+button:hover {
+opacity: 0.5;
+}
+.container {
+padding: 16px;
+background-color: white;
+padding-top: 20%;
+padding-bottom: 20%;
+}
+@media screen and (max-width: 300px) {
+span.psw {
+  display: block;
+  float: none;
+}
+}
+/* End of Login CSS */

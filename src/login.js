@@ -1,18 +1,22 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
-const login = () => {
+
+const loginScreen = () => {
     return (
-        <div id="login_screen">
-            <div id='containter'>
-
-            </div>
-            <div id="login">
-                <h1>Login</h1>
-                <button>LOGIN</button>
+        <div>
+            <div>
+                <form action="action_page.php" method="post">
+                    <div class="container">
+                        <label class="username"><p>Username</p></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required/>
+                        <label class="password"><p>Password</p></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required/>
+                        <button type="submit">Login</button>
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
             </div>
         </div>
     )
 }
-ReactDOM.render(<login/>, document.getElementById("app"))
-
+export default loginScreen

@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+
 
 const register = () => {
     return (
@@ -9,4 +9,3 @@ const register = () => {
 
     );
 }
-ReactDOM.render(<register/>, document.getElementById("app"));

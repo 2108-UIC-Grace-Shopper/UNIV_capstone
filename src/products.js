@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+
 
 const products = () => {
     return (
@@ -9,4 +9,3 @@ const products = () => {
 
     );
 }
-ReactDOM.render(<products/>, document.getElementById("app"));
