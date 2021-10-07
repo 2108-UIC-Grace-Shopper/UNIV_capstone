@@ -88,7 +88,7 @@ async function createInitialUsers() {
 async function createInitialProduct(){
   console.log('Creating Product')
   try{
-      const productsToCreate = [
+      const productsToCreate =[
         {name: 'Specialized - Tarmac', 
         description: 'Road', 
         price: 5000, 

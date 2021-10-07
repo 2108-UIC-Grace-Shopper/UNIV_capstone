@@ -3,6 +3,7 @@ const apiRouter = express.Router()
 const {getUserById}=require('../db')
 const {client} = require('../db/client')
 const jwt = require('jsonwebtoken')
+const {JWT_SECRET} = process.env
 
 
 //setting up user check
