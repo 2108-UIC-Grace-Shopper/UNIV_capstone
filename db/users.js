@@ -65,6 +65,7 @@ async function getUserByUsername(username) {
         if (!user) {
             return null
         }
+        delete user.password
         return user
     } catch (error) {
         console.log('ERROR @ getUserByUsername FUNCTION')

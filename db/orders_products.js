@@ -20,7 +20,6 @@ async function getOrdersProductsById(id){
         const {rows: [OP]} = await client.query(`
         SELECT * FROM orders_products
         WHERE id = $1
-        RETURNING *
         `,[id])
 
         return OP
@@ -29,17 +28,19 @@ async function getOrdersProductsById(id){
         throw error
     }
 }
-async function getOrdersProductsByUserId({id}){
+
+async function getOrdersProductsByOrdersId({id}){
     try{
         const {rows} = await client.query(`
         SELECT * FROM orders_products
-        WHERE "userId" = ${id}`)
+        WHERE "ordertId" = ${id}`)
         return rows
     } catch(error){
-        console.log('ERROR @ getOrdersProductsByUserId FUNCTION')
+        console.log('ERROR @ getProductsByOrdersId FUNCTION')
         throw error
     }
 }
+
 async function getOrdersProductsByProductId({id}){
     try{
         const {rows} = await client.query(`
@@ -66,11 +67,7 @@ async function updateOrdersProducts(id, fields = {}) {
         WHERE id= ${id}
         RETURNING *
         `, Object.values(fields))
-
-        console.log(OP)
-        console.log('HELLLLO')
         return OP
-        
     } catch(error) {
         console.log('ERROR @ updateOrdersProducts FUNCTION')
         throw error
@@ -83,16 +80,18 @@ async function deleteOrdersProducts(id){
         WHERE id = $1
         RETURNING *
         `, [id])
+
+        return ordersProducts
     } catch(error){
         console.log('ERROR @ deleteOrdersProduct')
-        throw errow
+        throw error
     }
 }
 
 module.exports = {
     createOrdersProducts,
     getOrdersProductsById,
-    getOrdersProductsByUserId,
+    getOrdersProductsByOrdersId,
     getOrdersProductsByProductId,
     updateOrdersProducts,
     deleteOrdersProducts
