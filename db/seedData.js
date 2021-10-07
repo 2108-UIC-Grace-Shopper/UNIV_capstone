@@ -88,6 +88,15 @@ async function createInitialProduct(){
         color: 'White', 
         availability: true,
         image: 'https://assets.specialized.com/i/specialized/90622-51_TARMAC-SL7-COMP-METWHTSIL-SMK_HERO?bg=rgb(241,241,241)&w=1600&h=900&fmt=auto'}
+        ,
+        {name: 'Black Cat Bicycle - Hello Monsta', 
+        description: 'Off-Road', 
+        price: 4600, 
+        size: 'Small', 
+        color: 'Red', 
+        availability: true,
+        image:'https://bikepacking.com/wp-content/uploads/2020/05/black-cat-hello-monsta-6-2000x1333.jpg'
+      }
       ]
     const products = await Promise.all(productsToCreate.map(createProduct))  
     console.log(products)
