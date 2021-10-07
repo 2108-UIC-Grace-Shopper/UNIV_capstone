@@ -1,5 +1,6 @@
-const { createUser, createProduct, createOrder} = require('./')
-const client = require("./client")
+const { createUser, createProduct, createOrder, createOrdersProducts} = require('./')
+const client = require("./client");
+const { getOrderById } = require('./orders');
 
 async function dropTables() {
     console.log('Dropping All Tables...');
@@ -69,8 +70,8 @@ async function createInitialUsers() {
       { username: 'Mason', password: 'mason123'},
     ]
     const users = await Promise.all(usersToCreate.map(createUser))
-    console.log(users)
-    console.log('--- Users created ---')
+    console.log(users,'--- Users created ---')
+  
   } catch (error){
     console.log('Error @ Function createInitialUser')
     throw error
@@ -83,15 +84,23 @@ async function createInitialProduct(){
       const productsToCreate = [
         {name: 'Specialized - Tarmac', 
         description: 'Road', 
-        price: 5800, 
-        size: 'medium', 
+        price: 5000, 
+        size: 'Medium', 
         color: 'White', 
         availability: true,
-        image: 'https://assets.specialized.com/i/specialized/90622-51_TARMAC-SL7-COMP-METWHTSIL-SMK_HERO?bg=rgb(241,241,241)&w=1600&h=900&fmt=auto'}
-      ]
+        image: 'https://assets.specialized.com/i/specialized/90622-51_TARMAC-SL7-COMP-METWHTSIL-SMK_HERO?bg=rgb(241,241,241)&w=1600&h=900&fmt=auto'
+      },
+        {name: 'Black Cat Bicycle - Hello Monsta', 
+        description: 'Off-Road', 
+        price: 4600, 
+        size: 'Small', 
+        color: 'Red', 
+        availability: true,
+        image:'https://bikepacking.com/wp-content/uploads/2020/05/black-cat-hello-monsta-6-2000x1333.jpg'
+      }]
     const products = await Promise.all(productsToCreate.map(createProduct))  
-    console.log(products)
-    console.log('--- product created ---')
+    console.log(products,'--- product created ---')
+   
   } catch (error){
     console.log('ERROR @ createInitialProduct')
     throw error
@@ -105,13 +114,28 @@ async function createInitialOrders() {
     const orderToCreate = [
       { usersId: 1, status: false},
       { usersId: 2, status: false}
-
     ]
-    const users = await Promise.all(orderToCreate.map(createOrder))
-    console.log(users)
-    console.log('--- Order created ---')
+    const orders = await Promise.all(orderToCreate.map(createOrder))
+    console.log(orders,'--- Order created ---')
+
   } catch (error){
     console.log('Error @ Function createInitialOrder')
+    throw error
+  }
+}
+
+async function createInitialOrdersProducts(){
+console.log('Creating orders_products') 
+  try{
+const OP = [
+  { orderId: 1, productId: 1, quantity: 1},
+  { orderId: 2, productId: 2, quantity: 2}
+]
+const OSPS = await Promise.all(OP.map(createOrdersProducts))
+ 
+console.log(OSPS, '--- Orders_Products created ---')
+  }catch (error) {
+    console.log('ERROR @ createInitialOrdersProducts')
     throw error
   }
 }
@@ -123,7 +147,8 @@ async function rebuildDB(){
     await createTables()
     await createInitialUsers(),
     await createInitialProduct(),
-    await createInitialOrders()
+    await createInitialOrders(),
+    await createInitialOrdersProducts()
       }
 catch(error){
     console.log("---error rebuildDb---")
