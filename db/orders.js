@@ -14,6 +14,7 @@ async function createOrder({usersId, status}){
         throw error
     }
 }
+
 async function getOrderById(id){
     try{
         const {rows: [order]} = await client.query(`
@@ -39,7 +40,6 @@ async function getAllOrders(){
         throw error
     }
 }
-
 
 module.exports = {
     createOrder,
