@@ -62,9 +62,10 @@ async function getUserByUsername(username) {
         WHERE username = $1
         `, [username])
 
-        if (!user || !user.length) {
+        if (!user) {
             return null
         }
+        delete user.password
         return user
     } catch (error) {
         console.log('ERROR @ getUserByUsername FUNCTION')

@@ -1,10 +1,9 @@
 import React from "react";
 
 
-const allProducts = () => {
+const register = () => {
     return (
         <div>
-            
 
         </div>
 

@@ -4,6 +4,8 @@ const morgan = require("morgan")
 //const {PORT=3000} = process.env
 const PORT = 3000
 
+require("dotenv").config()
+
 server.use(morgan('dev'))
 server.use(express.json())
 
