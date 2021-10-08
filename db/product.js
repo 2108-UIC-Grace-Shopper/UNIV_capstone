@@ -61,9 +61,26 @@ async function getProductByName(name){
     }
 }
 
+async function getProductsByOrderId(orderId){
+    try{
+        console.log("orderId: ",orderId)
+        const {rows:products}=await client.query(`
+        SELECT * FROM products
+        JOIN orders_products ON products.id = "productId"
+        WHERE "orderId" = $1
+        `,[orderId])
+        return products
+    }
+    catch(error){
+        console.log('ERROR @ getProductByOrderId FUNCTION')
+        throw error
+    }
+}
+
 module.exports = {
     createProduct,
     getAllProducts,
     getProductById,
-    getProductByName
+    getProductByName,
+    getProductsByOrderId
 }

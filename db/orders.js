@@ -33,7 +33,7 @@ async function getAllOrders(){
     try{
         const {rows: orders} = await client.query(`
         SELECT * FROM orders
-        JOIN users ON orders."userId" = users.id`)
+        JOIN users ON "usersId" = users.id`)
         return orders
     } catch(error){
         console.log('ERROR @ getAllOrders FUNCTION')
@@ -41,10 +41,25 @@ async function getAllOrders(){
     }
 }
 
+async function getOrderIdByUserId(userId,status){
+    try{
+        const{rows: orderId} = await client.query(`
+        SELECT id FROM orders
+        WHERE "usersId" = $1 AND status = $2
+        `,[userId,status])
+        return orderId
+    }
+    catch(error){
+        console.log('ERROR @ getOrderIdsByUserId FUNCTION')
+        throw error
+    }
+}
+
 module.exports = {
     createOrder,
     getOrderById,
-    getAllOrders
+    getAllOrders,
+    getOrderIdByUserId
 }
 
 

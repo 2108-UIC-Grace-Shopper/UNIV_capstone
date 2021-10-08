@@ -91,3 +91,74 @@ span.psw {
 }
 }
 /* End of Login CSS */
+
+/* start of products CSS */
+h1 {
+  color:#3e8e41;
+  text-align: center;
+  padding-top: 20px;
+}
+.items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-family: Open Sans;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+.item {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px -2px black;
+}
+.item-name {
+  background-color: #3e8e41;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 20px;
+}
+.fact-line {
+  background-color:#3e8e41;
+  color: white;
+  padding: 6px;
+  padding-top: 6px;
+  padding-right: 6px;
+  padding-bottom: 6px;
+  padding-left: 6px;
+
+}
+.add-item {
+  border-radius: 50%;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  padding: 6px;
+  padding-top: 6px;
+  padding-right: 6px;
+  padding-bottom: 6px;
+  padding-left: 6px;
+}
+.item-description {
+  padding: 6px;
+  padding-top: 6px;
+  padding-right: 6px;
+  padding-bottom: 6px;
+  padding-left: 6px;
+}
+@media only screen and (max-width: 768px) {
+  body {
+      font-size: x-large;
+      flex-direction: column;
+      flex-basis: 100%;
+  }
+}
+/* end of products CSS */

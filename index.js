@@ -17,7 +17,7 @@ client.connect()
 
 server.use((error,req,res,next)=>{
     console.error("SERVER ERROR: ",error)
-    res.send({
+    res.status(500).send({
         name: error.name,
         message: error.message
     })
