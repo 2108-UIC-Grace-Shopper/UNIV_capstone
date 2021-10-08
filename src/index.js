@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Header from "./header";
 import HomePage from "./homePage";
-import loginSCreen from "./login"
+import loginScreen from "./login";
+import products from "./products";
 
 
 
