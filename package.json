@@ -7,13 +7,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node ./db/seed.js"
+    "seed": "node ./db/seed.js",
+    "seed:dev": "nodemon ./db/seed.js",
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.22.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
     "react": "^17.0.2",
