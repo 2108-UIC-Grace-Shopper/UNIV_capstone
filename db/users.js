@@ -23,10 +23,11 @@ async function getUser({username, password}) {
  }
     try{
        const user = await getUserByUsername(username)
+       console.log("dbuser: ",user)
        if(!user) {
            return
        }
-       if(!password) {
+       if(user.password != password) {
            return
        }
        delete user.password
@@ -65,7 +66,7 @@ async function getUserByUsername(username) {
         if (!user) {
             return null
         }
-        delete user.password
+        // delete user.password
         return user
     } catch (error) {
         console.log('ERROR @ getUserByUsername FUNCTION')

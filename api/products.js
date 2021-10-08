@@ -25,7 +25,7 @@ productsRouter.get("/:id", async (req,res,next)=>{
         res.send(product)
     }
     catch(error){
-        console.error("ERROR-ALLPRODUCTS",error)
+        console.error("ERROR-PRODUCTBYID",error)
         next(error)
     }
 })

@@ -4,11 +4,12 @@ const usersRouter = express.Router()
 const jwt = require ('jsonwebtoken')
 //imoort functions from db
 const { getUser, getUserByUsername, createUser } = require('../db')
+const {requireUser} = require("./utils")
 
 //POST /api/users/login
 usersRouter.post("/login",async (req,res,next)=>{
-    //console.log("starting login")
-    //console.log("req.body",req.body)
+    console.log("starting login")
+    console.log("req.body",req.body)
     const {username,password}=req.body
     if (!username || !password){//check that both username and password are entered
         next({
@@ -18,8 +19,8 @@ usersRouter.post("/login",async (req,res,next)=>{
     }
     try{
         const user = await getUser({username,password})//using username and password to get the user from the db
-        //console.log("getUser: ",user)
-        if(!user){//if the username and password do not match n the db
+        console.log("getUser: ",user)
+        if(!user){//if the username and password do not match in the db
             next({
                 name: "ERROR-LOGIN_IncorrectCredentials",
                 message: "Username or Password is incorrect. Please try again."})
@@ -78,6 +79,17 @@ usersRouter.post("/register",async (req,res,next)=>{
         next(error)
     }
 })
+
+//sends user data if a valid token is supplied
+// usersRouter.get('/me', requireUser, async (req, res, next) => {
+//     try {
+//       res.send(req.user);
+//     } catch (error) {
+//       next(error)
+//     }
+//   })
+
+
 
 
 module.exports = usersRouter
