@@ -1,5 +1,5 @@
 import React from "react";
-const loginScreen = () => {
+const LoginScreen = () => {
     return (
         <div>
             <div>
@@ -17,4 +17,4 @@ const loginScreen = () => {
         </div>
     )
 }
-export default loginScreen
+export default LoginScreen
