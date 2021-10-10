@@ -5,6 +5,7 @@ import Header from "./header";
 import HomePage from "./homePage";
 import LoginScreen from "./login";
 import Products from "./products";
+import Register from "./register"
 
 
 
@@ -29,7 +30,14 @@ const App = () => {
                     render={(renderprops)=>
                     <LoginScreen
                     {...renderprops}
-                    token={token}
+                    setToken={setToken}
+                    />}
+                />
+                <Route //Register
+                    path = "/register"
+                    render={(renderprops)=>
+                    <Register
+                    {...renderprops}
                     setToken={setToken}
                     />}
                 />
