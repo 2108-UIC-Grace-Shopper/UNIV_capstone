@@ -7,6 +7,7 @@ import HomePage from "./homePage";
 import LoginScreen from "./login";
 import Products from "./products";
 import Register from "./register"
+import Cart from "./cart.js"
 
 
 
