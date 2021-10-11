@@ -1,3 +1,4 @@
+import axios from "axios";
 import React,{useState,useEffect} from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter as Router, Route} from "react-router-dom"
@@ -11,14 +12,38 @@ import Register from "./register"
 
 const App = () => {
     const [token,setToken]=useState("")
+    const [user,setUser]=useState("")
+
+    useEffect(()=>{
+        const getUser = async()=>{
+            const gotUser = await axios.get(`/api/users/me`,{
+                headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
+            })
+            //console.log("gotUser: ",gotUser.data)
+            setUser(gotUser.data)
+      
+        }
+        if (localStorage.getItem("token")){
+            getUser()
+            setToken(localStorage.getItem("token"))
+        }//if token is in local storage get the token from local storage and set to token then set user to results of getUser
+        else{
+            setToken("")
+        }
+
+    },[])
 
     return (
+        <Router>
         <div>
         <header>
-            <Header/>
+            <Header
+            token={token}
+            setToken={setToken}
+            />
         </header>
         <div>
-            <Router>
+            
                 <Route //products
                 path = "/products"
                 render={()=>
@@ -41,9 +66,9 @@ const App = () => {
                     setToken={setToken}
                     />}
                 />
-            </Router>
         </div>
         </div>
+        </Router>
     );
 }
 
