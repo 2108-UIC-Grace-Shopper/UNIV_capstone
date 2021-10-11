@@ -38,7 +38,10 @@ usersRouter.post("/login",async (req,res,next)=>{
 
 //POST /api/user/register
 usersRouter.post("/register",async (req,res,next)=>{
-    const {username,password}=req.body
+    const {username,password,email}=req.body
+    console.log("username",username)
+    console.log("password",password)
+    console.log("email",email)
     if (!username || !password){//check that both username and password are entered
         next({
             name: "ERROR-REGISTER_MissingCredentials",
@@ -53,14 +56,14 @@ usersRouter.post("/register",async (req,res,next)=>{
                 message: "A User with that Username already exists. Please try a different username."
             })
         }
-        else if(password.length<8){
-            next({
-                name:"ERROR-REGISTER_InsufficientPasswordLength",
-                message: "The Password entered is too short. Passwords must be at least 8 characters in length."
-            })
-        }
+        // else if(password.length<8){
+        //     next({
+        //         name:"ERROR-REGISTER_InsufficientPasswordLength",
+        //         message: "The Password entered is too short. Passwords must be at least 8 characters in length."
+        //     })
+        // }
         else{
-            const user = await createUser({username,password})
+            const user = await createUser({username,password,email})
             if(!user){
                 next({
                     name:"ERROR-REGISTER_UserCreationError",
@@ -81,13 +84,13 @@ usersRouter.post("/register",async (req,res,next)=>{
 })
 
 //sends user data if a valid token is supplied
-// usersRouter.get('/me', requireUser, async (req, res, next) => {
-//     try {
-//       res.send(req.user);
-//     } catch (error) {
-//       next(error)
-//     }
-//   })
+usersRouter.get('/me', requireUser, async (req, res, next) => {
+    try {
+      res.send(req.user);
+    } catch (error) {
+      next(error)
+    }
+  })
 
 
 

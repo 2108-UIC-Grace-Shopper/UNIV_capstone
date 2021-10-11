@@ -1,15 +1,16 @@
 const client = require('./client')
 
-async function createUser({ username, password}) {
+async function createUser({ username, password,email}) {
     try {
       const {rows: [user]} = await client.query(`
         INSERT INTO users(
             username, 
-            password) 
-        VALUES ($1, $2)
+            password,
+            email) 
+        VALUES ($1, $2, $3)
         ON CONFLICT (username) DO NOTHING 
-        RETURNING id, username
-      `, [username, password]);
+        RETURNING id, username, email
+      `, [username, password, email]);
       return user
     } catch (error) {
       console.log('ERROR @ createUser FUNCTION')
@@ -23,7 +24,7 @@ async function getUser({username, password}) {
  }
     try{
        const user = await getUserByUsername(username)
-       console.log("dbuser: ",user)
+       //console.log("dbuser: ",user)
        if(!user) {
            return
        }
