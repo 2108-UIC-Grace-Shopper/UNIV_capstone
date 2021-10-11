@@ -44,7 +44,7 @@ const Register = (props) => {
                         <input type="text" placeholder="Enter Username" name="uname" value = {username} onChange={function(event){setUserName(event.target.value)}} required/>
                         <label className="password"><p>Password</p></label>
                         <input type="password" placeholder="Enter Password" name="psw" value = {password} onChange={function(event){setPassword(event.target.value)}} required/>
-                        <label className="email"><p>Confirm Email</p></label>
+                        <label className="email"><p>Confirm Password</p></label>
                         <input type="password" placeholder="Enter Password" name="psw" value = {passwordconfirm} onChange={function(event){setPasswordConfirm(event.target.value)}} required/>
                         <label className="email"><p>Email</p></label>
                         <input type="email" placeholder="Enter Email" name="email" value = {email} onChange={function(event){setEmail(event.target.value)}} required/>
