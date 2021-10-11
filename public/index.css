@@ -166,3 +166,35 @@ h1 {
   text-decoration:none
 }
 /* end of products CSS */
+  /* start of cart CSS */
+  #itemDescription {
+    
+    border: solid 3px #04AA6D;
+    width: 25%;
+    height: 100px;
+  }
+  .cart-containter {
+    
+  }
+  sub {
+    display: flex;
+    flex-direction: row
+  }
+  .itemPrice{
+    margin-right: 100px;
+    font-size: 20px;
+  }
+  .checkout-description {
+    display: flex;
+    font-size: 20px;
+  
+
+  }
+  .totalPrice {
+    margin-right: 100px;
+    
+  }
+  .itemPrice {
+
+  }
+  /* end of cart CSS */
