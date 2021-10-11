@@ -65,6 +65,7 @@ margin: 8px 0;
 display: inline-block;
 border: 1px solid #ccc;
 box-sizing: border-box;
+margin-left: 40%;
 }
 button {
 background-color: #04AA6D;
@@ -74,15 +75,13 @@ margin: 8px 0;
 border: none;
 cursor: pointer;
 width: 50%;
+margin-left: 40%;
 }
 button:hover {
 opacity: 0.5;
 }
-.container {
-padding: 16px;
-background-color: white;
-padding-top: 20%;
-padding-bottom: 20%;
+p {
+  margin-left: 40%;
 }
 @media screen and (max-width: 300px) {
 span.psw {

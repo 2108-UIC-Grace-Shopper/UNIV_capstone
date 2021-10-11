@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllProducts, getProductById } = require('../db')
+const { getAllProducts, getProductById, getProductsByOrderId } = require('../db')
 const productsRouter = express.Router()
 
 //GET /api/products
@@ -26,6 +26,21 @@ productsRouter.get("/:id", async (req,res,next)=>{
     }
     catch(error){
         console.error("ERROR-PRODUCTBYID",error)
+        next(error)
+    }
+})
+
+productsRouter.get("/order/:orderId", async (req,res,next)=>{
+    console.log("---starting test---")
+    try{
+        const {orderId} = req.params
+        console.log("orderId: ",orderId)
+        const test = await getProductsByOrderId(orderId)
+        console.log("test: ",test)
+        res.send(test)
+    }
+    catch(error){
+        console.error("ERROR-TESTORDER",error)
         next(error)
     }
 })

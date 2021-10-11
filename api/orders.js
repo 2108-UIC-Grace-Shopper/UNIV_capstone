@@ -26,7 +26,7 @@ ordersRouter.get("/:id", async (req, res, next) =>{
 })
 
 //GET /api/orders/:userId
-ordersRouter.get("/:userId", async (req,res,next)=>{
+ordersRouter.get("/users/:userId", async (req,res,next)=>{
     try{
         const {userId} = req.params
         console.log("userId: ",userId)
