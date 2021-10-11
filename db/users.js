@@ -24,7 +24,7 @@ async function getUser({username, password}) {
  }
     try{
        const user = await getUserByUsername(username)
-       console.log("dbuser: ",user)
+       //console.log("dbuser: ",user)
        if(!user) {
            return
        }
