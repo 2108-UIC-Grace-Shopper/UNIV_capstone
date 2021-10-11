@@ -30,16 +30,18 @@ productsRouter.get("/:id", async (req,res,next)=>{
     }
 })
 
-productsRouter.get("/orders/orderId", async (req,res,next)=>{
+productsRouter.get("/order/:orderId", async (req,res,next)=>{
+    console.log("---starting test---")
     try{
-        const {id}=req.params
-        const products=await getProductsByOrderId(id)
-        res.send(products)
+        const {orderId} = req.params
+        console.log("orderId: ",orderId)
+        const test = await getProductsByOrderId(orderId)
+        console.log("test: ",test)
+        res.send(test)
     }
     catch(error){
-        console.error("ERROR-PRODUCTBYORDERID",error)
+        console.error("ERROR-TESTORDER",error)
         next(error)
-        
     }
 })
 
