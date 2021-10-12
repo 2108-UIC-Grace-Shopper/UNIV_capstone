@@ -42,7 +42,7 @@ async function createTables() {
          id SERIAL PRIMARY KEY,
          name VARCHAR(255) UNIQUE NOT NULL,
          description TEXT NOT NULL,
-         price MONEY,
+         price DECIMAL,
          size VARCHAR(255) NOT NULL,
          color VARCHAR(255) NOT NULL,
          availability BOOLEAN DEFAULT TRUE,
@@ -92,7 +92,7 @@ async function createInitialProduct(){
       const productsToCreate =[
         {name: 'Specialized - Tarmac', 
         description: 'Road', 
-        price: 5000, 
+        price: 5000.00, 
         size: 'Medium', 
         color: 'White', 
         availability: true,
@@ -100,7 +100,7 @@ async function createInitialProduct(){
       },
         {name: 'Black Cat Bicycle - Hello Monsta', 
         description: 'Off-Road', 
-        price: 4600, 
+        price: 4600.00, 
         size: 'Small', 
         color: 'Red', 
         availability: true,
@@ -145,7 +145,8 @@ console.log('Creating orders_products')
   try{
 const OP = [
   { orderId: 1, productId: 1, quantity: 1},
-  { orderId: 2, productId: 2, quantity: 2}
+  { orderId: 2, productId: 2, quantity: 2},
+  { orderId: 2, productId: 1, quantity: 1}
 ]
 const OSPS = await Promise.all(OP.map(createOrdersProducts))
 console.log(OSPS, '--- Orders_Products created ---')
