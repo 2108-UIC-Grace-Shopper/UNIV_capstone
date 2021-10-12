@@ -1,11 +1,5 @@
 const { createUser, createProduct, createOrder, createOrdersProducts} = require('./')
 const { getAllProducts, getProductById, getProductByName} = require('./product')
-const {
-  getOrdersProductsById,
-    getOrdersProductsByOrdersId,
-    getOrdersProductsByProductId,
-    updateOrdersProducts,
-    deleteOrdersProducts} = require('./orders_products')
 const client = require("./client");
 
 
@@ -157,7 +151,8 @@ async function createInitialOrders() {
  
     const orderToCreate = [
       { usersId: 1, status: false},
-      { usersId: 2, status: false}
+      { usersId: 2, status: false},
+      { usersId: 2, status: true}
     ]
     const orders = await Promise.all(orderToCreate.map(createOrder))
     console.log(orders,'--- Order created ---')
@@ -173,7 +168,9 @@ console.log('Creating orders_products')
   try{
 const OP = [
   { orderId: 1, productId: 1, quantity: 1},
-  { orderId: 2, productId: 2, quantity: 2}
+  { orderId: 2, productId: 2, quantity: 2},
+  { orderId: 2, productId: 4, quantity: 1},
+  { orderId: 3, productId: 2, quantity: 2}
 ]
 const OSPS = await Promise.all(OP.map(createOrdersProducts))
 console.log(OSPS, '--- Orders_Products created ---')
