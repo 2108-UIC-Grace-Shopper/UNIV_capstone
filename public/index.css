@@ -165,11 +165,7 @@ h1 {
       flex-basis: 100%;
   }
 }
-/* added for revised links. Not sure where these should be on this sheet */
-.linkto-styleA{
-  color:white;
-  text-decoration:none
-}
+
 /* end of products CSS */
   /* start of cart CSS */
   #itemDescription {

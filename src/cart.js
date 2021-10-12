@@ -75,7 +75,6 @@ const Cart = (props) => {
     //         </div>
     )
 }
-=======
 // import react from "react";
 
 // // const Cart = () => {
@@ -107,4 +106,4 @@ const Cart = (props) => {
 // // }
 
 
-// export default Cart
+export default Cart
