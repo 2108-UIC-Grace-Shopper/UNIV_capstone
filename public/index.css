@@ -10,6 +10,7 @@
   .dropdown {
     position: relative;
     display: inline-block;
+    
   }
   
   /* Dropdown Content (Hidden by Default) */
@@ -20,6 +21,7 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    flex-direction: column;
   }
   
   /* Links inside the dropdown */
@@ -41,6 +43,8 @@
 
   ul {
       list-style-type: none;
+      flex-direction: column;
+      display: flex;
   }
   header {
       background-color: #04AA6D;
@@ -55,11 +59,12 @@
 }
 form {
 display: flex;
+flex-direction: column;
 border: 50px solid #f1f1f1;
 justify-content: center;
 }
 input[type=text], input[type=password] {
-width: 50%;
+width: 25%;
 padding: 12px 20px;
 margin: 8px 0;
 display: inline-block;
@@ -74,7 +79,7 @@ padding: 14px 20px;
 margin: 8px 0;
 border: none;
 cursor: pointer;
-width: 50%;
+width: 25%;
 margin-left: 40%;
 }
 button:hover {
