@@ -105,18 +105,46 @@ async function createInitialProduct(){
         color: 'Red', 
         availability: true,
         image:'https://bikepacking.com/wp-content/uploads/2020/05/black-cat-hello-monsta-6-2000x1333.jpg'
+      },
+      {
+        name: 'Samson Track Frameset',
+        description: 'Track',
+        price: 1650,
+        size: 'Small',
+        color:'White',
+        availability: true,
+        image: 'https://cdn.shopify.com/s/files/1/1044/5578/products/DSC_0432_12e69246-cdaf-4ace-b873-72e55d143acb_1024x1024.jpg?v=1583325484'
+      },
+      { 
+        name: 'Crust Bike',
+        description: 'Adventure',
+        price: 2600,
+        size: 'Large',
+        color: 'Peach',
+        availability: true,
+        image: 'https://bikepacking.com/wp-content/uploads/2019/04/crust-noreaster_1-960x640.jpg'
+      },
+      {
+        name: 'OPEN UPPER',
+        description: 'Gravel',
+        price: 6000,
+        size: 'Large',
+        color: 'Black',
+        availability: true,
+        image: 'https://cdn.shopify.com/s/files/1/0483/9040/6312/products/OPEN-UPPER-Ultegra-Complete-Bicycle-Final_1600x.jpg?v=1609455023'
+      },
+      {
+        name: 'Surly - Midnight Special',
+        description: 'Off-Road',
+        price: 2900,
+        size: 'Medium',
+        color: 'Green/Blue',
+        availability: true,
+        image: 'https://live.staticflickr.com/7887/46879558314_0d8dc30c95_b.jpg'
       }]
     const products = await Promise.all(productsToCreate.map(createProduct))  
     console.log(products,'--- product created ---')
-   console.log('---------------------------')
-  const test = await getAllProducts
-  console.log(test ,' ???????')
 
-  const newTest2 = getProductById(2)
-  console.log(newTest2,' ANOTHER ONE??')
-
-  const newTest = getProductByName('Black Cat Bicycle - Hello Monsta')
-  console.log(newTest, '??????')
   } catch (error){
     console.log('ERROR @ createInitialProduct')
     throw error
@@ -149,20 +177,6 @@ const OP = [
 ]
 const OSPS = await Promise.all(OP.map(createOrdersProducts))
 console.log(OSPS, '--- Orders_Products created ---')
-
-// const test = await getOrdersProductsById(1)
-// console.log(test)
-// const test2 = await getOrdersProductsByOrdersId(1)
-// console.log(test2, '-------------------TEST2')
-
-// const test3 = await getOrdersProductsByProductId(1)
-// console.log(test3,' ---------------TEST 3')
-
-//  const test4 = await updateOrdersProducts(1,{
-//    orderId: 1, productId: 1, quantity: 3
-//  })
-//  console.log(test4, ' ------------UPDATE TEST')
-
 
   }catch (error) {
     console.log('ERROR @ createInitialOrdersProducts')
