@@ -2,12 +2,14 @@ import React from "react";
 import {BrowserRouter as Router,Route,Link, Redirect} from "react-router-dom"
 
 const Header = (props) => {
-let {token,setToken}=props
+let {token,setToken,setOrderId}=props
 
 function logoutFunc(event){
   event.preventDefault()//fixed mistake here
   setToken("")
   localStorage.removeItem("token")
+  setOrderId("")
+
 }
 
     return (
