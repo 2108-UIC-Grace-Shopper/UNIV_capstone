@@ -15,7 +15,6 @@ const App = () => {
     const [token,setToken]=useState("")
     const [user,setUser]=useState("")
     const [orderId,setOrderId]=useState("")
-    const [count,setCount]=useState(0)
 
 
     useEffect(()=>{
@@ -48,6 +47,7 @@ const App = () => {
             <Header
             token={token}
             setToken={setToken}
+            setOrderId={setOrderId}
             />
         </header>
         <div>
@@ -81,6 +81,7 @@ const App = () => {
                         {...renderprops}
                         token={token}
                         orderId={orderId}
+                        setOrderId={setOrderId}
                     />}
                 />
         </div>

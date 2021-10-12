@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import axios from "axios"
 
 const Cart = (props) => {
-  const {token,orderId} = props
+  const {token,orderId,setOrderId} = props
   //console.log("props-orderId: ",orderId)
   //console.log(`/api/products/order/${orderId}`)
 
@@ -19,20 +19,27 @@ const Cart = (props) => {
     if(orderId){
       loadOrderProductsData()
     }
+    else if(!orderId){
+      setOrderProducts([])
+    }
   },[orderId])
+
   console.log("orderProducts: ",orderProducts)
+  let totalCalc = 0
   
     return (
         <div>
             <h1>Welcome to the Cart!</h1>
             <div className ="cart-containter">
             {orderProducts.map(function(element){
+              totalCalc = totalCalc+Number(element.price * element.quantity)
               return(
                 <section key={element.id} className="item1">
                   <img src= {element.image} height="100px" width="100px"/>
-                  <p id="itemDescription" name="item-1" rows="6" cols="50">{element.description}</p>
+                  <p id="itemDescription" name="item-1" rows="6" cols="50">{element.name}</p>
+                  <p id="itemQuantity">Qty: {element.quantity}</p>
                   <sub id="priceRemove">
-                  <p className="itemPrice">Price: {element.price}</p>
+                  <p className="itemPrice">Price: ${element.price * element.quantity}</p>
                   <button className="RemoveItem">Remove</button>
                   </sub>
                 </section>
@@ -41,7 +48,7 @@ const Cart = (props) => {
             </div>
     {/* <!-- start of checkout section --> */}
             <nav className="checkout-description">
-              <p className="totalPrice">Total: </p>
+              <p className="totalPrice">Total: ${totalCalc}</p>
               <button type="submit">Checkout</button>
             </nav>
         </div>
