@@ -1,5 +1,5 @@
 const express = require('express')
-const { getOrderById, getAllOrders, getOrderIdByUserId, getProductsByOrderId } = require('../db')
+const { getOrderById, getAllOrders } = require('../db')
 const ordersRouter = express.Router()
 
 //GET /api/orders
@@ -39,5 +39,6 @@ ordersRouter.get("/users/:userId", async (req,res,next)=>{
         next(error)
     }
 })
+
 
 module.exports = ordersRouter
