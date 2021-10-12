@@ -7,14 +7,14 @@ const Products = () => {
 
   useEffect(()=>{
     const loadProductsData = async()=>{
-      console.log("---start to load data---")
+      //console.log("---start to load data---")
       const allProductsResponse = await axios.get("/api/products")
-      console.log("allProductsResponse: ",allProductsResponse)
+      //console.log("allProductsResponse: ",allProductsResponse)
       setProducts(allProductsResponse.data)
     }
     loadProductsData()
   },[])
-  console.log("products: ",products)
+  //console.log("products: ",products)
 
      return (
         <div>

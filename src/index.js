@@ -14,25 +14,32 @@ import Cart from "./cart.js"
 const App = () => {
     const [token,setToken]=useState("")
     const [user,setUser]=useState("")
+    const [orderId,setOrderId]=useState("")
+    const [count,setCount]=useState(0)
+
 
     useEffect(()=>{
-        const getUser = async()=>{
+        const getState = async()=>{
             const gotUser = await axios.get(`/api/users/me`,{
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
-            //console.log("gotUser: ",gotUser.data)
             setUser(gotUser.data)
-      
+            const gotOrderId = await axios.get(`/api/orders/users/${gotUser.data.id}`)
+            setOrderId(gotOrderId.data[0].id)
         }
+        
+
         if (localStorage.getItem("token")){
-            getUser()
+            getState()
             setToken(localStorage.getItem("token"))
         }//if token is in local storage get the token from local storage and set to token then set user to results of getUser
         else{
             setToken("")
         }
-
     },[])
+
+    //console.log("state user:",user)
+    //console.log("state orderId: ",orderId)
 
     return (
         <Router>
@@ -55,16 +62,25 @@ const App = () => {
                     path = "/login"
                     render={(renderprops)=>
                     <LoginScreen
-                    {...renderprops}
-                    setToken={setToken}
+                        {...renderprops}
+                        setToken={setToken}
                     />}
                 />
                 <Route //Register
                     path = "/register"
                     render={(renderprops)=>
                     <Register
-                    {...renderprops}
-                    setToken={setToken}
+                        {...renderprops}
+                        setToken={setToken}
+                    />}
+                />
+                <Route //Cart
+                    path = "/cart"
+                    render={(renderprops)=>
+                    <Cart
+                        {...renderprops}
+                        token={token}
+                        orderId={orderId}
                     />}
                 />
         </div>

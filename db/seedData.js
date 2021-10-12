@@ -145,7 +145,8 @@ console.log('Creating orders_products')
   try{
 const OP = [
   { orderId: 1, productId: 1, quantity: 1},
-  { orderId: 2, productId: 2, quantity: 2}
+  { orderId: 2, productId: 2, quantity: 2},
+  { orderId: 2, productId: 1, quantity: 1}
 ]
 const OSPS = await Promise.all(OP.map(createOrdersProducts))
 console.log(OSPS, '--- Orders_Products created ---')
