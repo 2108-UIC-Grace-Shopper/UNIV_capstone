@@ -49,6 +49,13 @@
   header {
       background-color: #04AA6D;
   }
+ .cartbtn {
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    
+  }
   .homePageimg {
       width: 100%;
       height: auto;
@@ -81,6 +88,7 @@ border: none;
 cursor: pointer;
 width: 25%;
 margin-left: 40%;
+display: flex;
 }
 button:hover {
 opacity: 0.5;
