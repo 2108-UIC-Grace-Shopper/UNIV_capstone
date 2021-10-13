@@ -29,12 +29,13 @@ async function getOrdersProductsById(id){
     }
 }
 
-async function getOrdersProductsByOrdersId({id}){
+async function getOrdersProductsByOrdersId(id){
     try{
-        const {rows} = await client.query(`
+        const {rows: OP} = await client.query(`
         SELECT * FROM orders_products
-        WHERE "ordertId" = ${id}`)
-        return rows
+        WHERE "orderId" = $1
+        `,[id])
+        return OP
     } catch(error){
         console.log('ERROR @ getProductsByOrdersId FUNCTION')
         throw error

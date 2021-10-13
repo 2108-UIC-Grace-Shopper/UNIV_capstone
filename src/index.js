@@ -35,10 +35,11 @@ const App = () => {
         else{
             setToken("")
         }
+
     },[])
 
-    //console.log("state user:",user)
-    //console.log("state orderId: ",orderId)
+    console.log("state user:",user)
+    console.log("state orderId: ",orderId)
 
     return (
         <Router>
@@ -56,6 +57,8 @@ const App = () => {
                 path = "/products"
                 render={()=>
                     <Products
+                    token={token}
+                    orderId={orderId}
                     />}
                 />
                 <Route //Login

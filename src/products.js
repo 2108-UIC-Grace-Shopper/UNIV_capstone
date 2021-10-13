@@ -1,9 +1,14 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios"
+import AddToCart from "./addorders_products"
 
 
-const Products = () => {
+const Products = (props) => {
+  const {token,orderId}=props
+
   const[products,setProducts]=useState([])
+  const[productId,setProductId]=useState("")
+  const[quantity,setQuantity]=useState(1)
 
   useEffect(()=>{
     const loadProductsData = async()=>{
@@ -16,6 +21,19 @@ const Products = () => {
   },[])
   //console.log("products: ",products)
 
+  function handleAddToCart(productId){
+    console.log("---start add to cart---")
+    setProductId(productId)
+    //have to figure out quantity later
+    if(token){
+    AddToCart(orderId,productId,quantity)
+    }
+    else{
+      console.log("DO LATER - design guest cart later")
+    }
+    console.log("---end add to cart---")
+  }
+
      return (
         <div>
           <main>
@@ -24,7 +42,7 @@ const Products = () => {
               {products.map(function(element){
                 return(
                   <div key={element.id} className="item">
-                    <h3 className="item-name"><span>{element.name}</span><i className="add-item material-icons">add_shopping_cart</i></h3>
+                    <h3 className="item-name"><span>{element.name}</span><i className="add-item material-icons" onClick = {()=>{handleAddToCart(element.id)}}>add_shopping_cart</i></h3>
                     <img className="item-image" src={element.image} alt={element.name}/>
                     <p className="item-description">{element.description}</p>
                     <p className="fact-line"><span className="fact-name">Price:</span><span>{element.price}</span></p>
