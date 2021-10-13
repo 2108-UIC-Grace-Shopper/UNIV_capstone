@@ -40,7 +40,7 @@ const LoginScreen = (props) => {
                         <input type="password" placeholder="Enter Password" name="psw" value = {password} onChange={function(event){setPassword(event.target.value)}} required/>
                         <button type="submit">Login</button>
                         {/* <button type="submit">Register</button> */}
-                        <button type="submit"><Link to = "/register" className="linkto-styleA">Register</Link></button>
+                        <p><Link to = "/register" className="linkto-styleA">Register</Link></p>
 
                 </form>
             </div>
