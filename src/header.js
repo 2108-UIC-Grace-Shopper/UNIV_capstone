@@ -15,7 +15,7 @@ function logoutFunc(event){
     return (
     <div className="dropdown">
     <button className="dropbtn">Dropdown</button>
-    <button className="cartbtn">Cart</button>
+    <button className="material-icons md-48 md-dark"><Link to = "/cart">CART</Link></button>
     <div className="dropdown-content">
     <ul id="navigation">
         <li>

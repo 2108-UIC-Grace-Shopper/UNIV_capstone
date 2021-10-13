@@ -88,6 +88,7 @@ border: none;
 cursor: pointer;
 width: 25%;
 margin-left: 40%;
+display: flex;
 }
 button:hover {
 opacity: 0.5;
