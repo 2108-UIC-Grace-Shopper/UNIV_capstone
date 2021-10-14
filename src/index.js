@@ -8,7 +8,7 @@ import LoginScreen from "./login";
 import Products from "./products";
 import Register from "./register"
 import Cart from "./cart.js"
-
+import SingleProduct from "./singleProduct";
 
 
 const App = () => {
@@ -82,6 +82,12 @@ const App = () => {
                         token={token}
                         orderId={orderId}
                         setOrderId={setOrderId}
+                    />}
+                />
+                 <Route //singleProduct
+                path = "/singleProduct"
+                render={()=>
+                    <SingleProduct
                     />}
                 />
         </div>
