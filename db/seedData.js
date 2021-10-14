@@ -1,6 +1,11 @@
 const { createUser, createProduct, createOrder, createOrdersProducts} = require('./')
-const { getAllProducts, getProductById, getProductByName} = require('./product')
 const client = require("./client");
+const {
+  getOrdersProductsById,
+    getOrdersProductsByOrdersId,
+    getOrdersProductsByProductId,
+    updateOrdersProducts,
+    deleteOrdersProducts} = require('./orders_products')
 
 
 async function dropTables() {
@@ -173,7 +178,23 @@ const OP = [
   { orderId: 3, productId: 2, quantity: 2}
 ]
 const OSPS = await Promise.all(OP.map(createOrdersProducts))
-console.log(OSPS, '--- Orders_Products created ---')
+
+console.log(OSPS)
+console.log('--- Orders_Products created ---')
+
+// const test = await getOrdersProductsById(1)
+// console.log(test,'-------TEST 1')
+// const test2 = await getOrdersProductsByOrdersId(2)
+// console.log(test2, '-------------------TEST2')
+
+// const test3 = await getOrdersProductsByProductId(4)
+// console.log(test3,' ---------------TEST 3')
+
+//  const test4 = await updateOrdersProducts(1,{
+//    orderId: 1, productId: 1, quantity: 3
+//  })
+//  console.log(test4, ' ------------TEST 4')
+
 
   }catch (error) {
     console.log('ERROR @ createInitialOrdersProducts')
@@ -199,5 +220,4 @@ throw(error)
 
 module.exports = {
   rebuildDB
- }
-    
+ } 

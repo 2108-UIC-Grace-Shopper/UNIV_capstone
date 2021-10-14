@@ -1,4 +1,3 @@
-
 import React,{useState,useEffect} from "react";
 import axios from "axios"
 
@@ -24,10 +23,9 @@ const Cart = (props) => {
       setOrderProducts([])
     }
   },[orderId])
-
   console.log("orderProducts: ",orderProducts)
   let totalCalc = 0
-  
+
     return (
         <div>
             <h1>Welcome to the Cart!</h1>

@@ -29,11 +29,12 @@ async function getOrdersProductsById(id){
     }
 }
 
-async function getOrdersProductsByOrdersId({id}){
+async function getOrdersProductsByOrdersId(id){
     try{
         const {rows} = await client.query(`
         SELECT * FROM orders_products
-        WHERE "ordertId" = ${id}`)
+        WHERE "orderId" = ${id}`)
+  
         return rows
     } catch(error){
         console.log('ERROR @ getProductsByOrdersId FUNCTION')
@@ -41,11 +42,12 @@ async function getOrdersProductsByOrdersId({id}){
     }
 }
 
-async function getOrdersProductsByProductId({id}){
+async function getOrdersProductsByProductId(id){
     try{
         const {rows} = await client.query(`
         SELECT * FROM orders_products
         WHERE "productId" = ${id}`)
+
         return rows
     } catch(error){
         console.log('ERROR @ getProductsByProductId FUNCTION')
@@ -55,7 +57,7 @@ async function getOrdersProductsByProductId({id}){
 async function updateOrdersProducts(id, fields = {}) {
     const setString = Object.keys(fields).map (
         (key, index) => `
-    "${ key }" = ${ index + 1 }`).join (', ')
+    "${ key }" = $${ index + 1 }`).join (', ')
 
     if (setString.length === 0) {
         return

@@ -8,7 +8,7 @@ const { createOrdersProducts,
 const { requireUser } = require('./utils')
 
 //GET /api/orders_products
-orders_productsRouter.get('/:id', async (req, res, next) => {
+orders_productsRouter.get('/:id', requireUser, async (req, res, next) => {
     try{
         const {id} = req.params
         const currentOrder = await getOrdersProductsById(id)
@@ -53,7 +53,7 @@ orders_productsRouter.get('/:id', async (req, res, next) => {
 // )
 
 //DELETE /api/orders_products/:Id
-orders_productsRouter.delete('/:id', async (req, res, next) => {
+orders_productsRouter.delete('/:id', requireUser, async (req, res, next) => {
     try{
         const {id} = req.params
         const deleteOrder = await deleteOrdersProducts(id)
