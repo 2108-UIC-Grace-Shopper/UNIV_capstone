@@ -67,6 +67,8 @@ const App = () => {
                     <LoginScreen
                         {...renderprops}
                         setToken={setToken}
+                        setOrderId={setOrderId}
+                        orderId={orderId}
                     />}
                 />
                 <Route //Register
@@ -75,6 +77,7 @@ const App = () => {
                     <Register
                         {...renderprops}
                         setToken={setToken}
+                        setOrderId={setOrderId}
                     />}
                 />
                 <Route //Cart
@@ -83,7 +86,6 @@ const App = () => {
                     <Cart
                         {...renderprops}
                         token={token}
-                        orderId={orderId}
                         setOrderId={setOrderId}
                     />}
                 />

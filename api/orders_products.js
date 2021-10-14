@@ -3,6 +3,7 @@ const orders_productsRouter = express.Router()
 const { createOrdersProducts,
     getOrdersProductsById,
     updateOrdersProducts,
+    updateOrdersProductsQuantity,
     deleteOrdersProducts,
     getOrdersProductsByOrdersId}
     = require('../db')
@@ -88,15 +89,49 @@ orders_productsRouter.post('/order/:orderId', async (req,res,next)=>{
     try{
         const {orderId}=req.params
         const {productId,quantity}=req.body
-        console.log("orderId: ",orderId)
-        console.log("productId: ",productId)
-        console.log("quantity: ",quantity)
+        //console.log("orderId: ",orderId)
+        //console.log("productId: ",productId)
+        //console.log("quantity: ",quantity)
         const orders_products = await createOrdersProducts({orderId, productId, quantity})
         res.send(orders_products)
 
     }
     catch(error){
         console.error("ERROR-postOrdersProducts by orderId")
+        next(error)
+     }
+})
+
+//PATCH/api/orders_products/quantity/:id
+// orders_productsRouter.patch('/quantity/:id',async (req,res,next)=>{
+//     try{
+//         const {id}=req.params
+//         const{quantity}=req.body
+//         const passQ = {quantity: quantity}
+//         console.log("id: ",id)
+//         console.log("quantity: ",passQ)
+//         const quantityResponse = await updateOrdersProducts({id,passQ})
+//         console.log(quantityResponse)
+//     }
+//     catch(error){
+//         console.error("ERROR-patchOrdersProducts by orderId")
+//         next(error)
+//      }
+// })
+
+//PATCH/api/orders_products/quantity/:id
+orders_productsRouter.patch('/quantity/:id',async (req,res,next)=>{
+    try{
+        const {id}=req.params
+        const {quantity}=req.body
+        //console.log("id: ",id)
+        //console.log("quantity: ",quantity)
+        const quantityResponse = await updateOrdersProductsQuantity(id,quantity)
+        //console.log("response: ",quantityResponse)
+        res.send(quantityResponse)
+    }
+    catch(error){
+        console.error("ERROR-patchOrdersProducts by orderId")
         next(error)
      }
 })

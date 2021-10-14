@@ -5,7 +5,7 @@ import {BrowserRouter as Router,Route,Link, Redirect} from "react-router-dom"
 
 
 const LoginScreen = (props) => {
-    let {setToken}=props
+    let {setToken,setOrderId}=props
     const[username,setUsername]=useState("")
     const[password,setPassword]=useState("")
 
@@ -13,9 +13,12 @@ const LoginScreen = (props) => {
         let user = {"username":username,"password":password}
         try{
             const loginResponse = await axios.post("/api/users/login",user)
-            console.log("loginResponse",loginResponse)
+            //console.log("loginResponse",loginResponse)
+            //console.log("userId: ",loginResponse.data.user.id)
             setToken(loginResponse.data.token)
             localStorage.setItem("token",loginResponse.data.token)
+            const gotOrderId = await axios.get(`/api/orders/users/${loginResponse.data.user.id}`)
+            setOrderId(gotOrderId.data[0].id)
             props.history.push("/products")
         }
         catch(error){
