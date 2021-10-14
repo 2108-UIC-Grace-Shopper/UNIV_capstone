@@ -29,23 +29,25 @@ async function getOrdersProductsById(id){
     }
 }
 
-async function getOrdersProductsByOrdersId({id}){
+async function getOrdersProductsByOrdersId(id){
     try{
-        const {rows} = await client.query(`
+        const {rows: OP} = await client.query(`
         SELECT * FROM orders_products
-        WHERE "ordertId" = ${id}`)
-        return rows
+        WHERE "orderId" = $1
+        `,[id])
+        return OP
     } catch(error){
         console.log('ERROR @ getProductsByOrdersId FUNCTION')
         throw error
     }
 }
 
-async function getOrdersProductsByProductId({id}){
+async function getOrdersProductsByProductId(id){
     try{
         const {rows} = await client.query(`
         SELECT * FROM orders_products
         WHERE "productId" = ${id}`)
+
         return rows
     } catch(error){
         console.log('ERROR @ getProductsByProductId FUNCTION')
@@ -55,7 +57,7 @@ async function getOrdersProductsByProductId({id}){
 async function updateOrdersProducts(id, fields = {}) {
     const setString = Object.keys(fields).map (
         (key, index) => `
-    "${ key }" = ${ index + 1 }`).join (', ')
+    "${ key }" = $${ index + 1 }`).join (', ')
 
     if (setString.length === 0) {
         return
@@ -73,6 +75,26 @@ async function updateOrdersProducts(id, fields = {}) {
         throw error
     }
 }
+
+async function updateOrdersProductsQuantity(id,quantity){
+    try{
+        //console.log("dbId: ",id)
+        //console.log("dbQuantity",quantity)
+        //const setString = `quantity = ${quantity}`
+        const {rows: updatedOrderProducts}=await client.query(`
+        UPDATE orders_products
+        SET quantity = $2
+        WHERE id = $1
+        RETURNING *
+        `,[id,quantity])
+        return updatedOrderProducts
+    }
+    catch(error) {
+        console.log('ERROR @ updateOrdersProductsQuantity FUNCTION')
+        throw error
+    }
+}
+
 async function deleteOrdersProducts(id){
     try{
         const {rows: [ordersProducts]} = await client.query(`
@@ -94,5 +116,6 @@ module.exports = {
     getOrdersProductsByOrdersId,
     getOrdersProductsByProductId,
     updateOrdersProducts,
+    updateOrdersProductsQuantity,
     deleteOrdersProducts
 }

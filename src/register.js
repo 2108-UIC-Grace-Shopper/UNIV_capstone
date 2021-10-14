@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 
 const Register = (props) => {
-    const{setToken}=props
+    const{setToken,setOrderId}=props
     const[username,setUserName]=useState("")
     const[password,setPassword]=useState("")
     const[passwordconfirm,setPasswordConfirm]=useState("")
@@ -16,7 +16,12 @@ const Register = (props) => {
             if(password === passwordconfirm){
                 const registrationResponse = await axios.post("/api/users/register",user)
                 setToken(registrationResponse.data.token)
+                console.log("userId: ",registrationResponse.data.user.id)
                 localStorage.setItem("token",registrationResponse.data.token)
+                //the below lines will have need to have a createOrder function with them.
+                //const gotOrderId = await axios.get(`/api/orders/users/${registrationResponse.data.user.id}`)
+                //console.log ("gotOrderId: ",gotOrderId)
+                // setOrderId(gotOrderId.data[0].id)
                 props.history.push("/products")
             }
             else{
