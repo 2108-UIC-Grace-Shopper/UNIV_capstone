@@ -19,7 +19,7 @@ function logoutFunc(event){
     <div className="dropdown-content">
     <ul id="navigation">
         <li>
-          <a href="" className="material-icons md-48 md-dark">home</a>
+          <a href="" className="material-icons md-48 md-dark"><Link to = "/">home</Link></a>
         </li>
         <li>
           <a href="" target="_blank" className="material-icons md-48 md-dark">account_circle</a>

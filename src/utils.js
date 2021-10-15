@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios"
 
-const AddToCart = async (orderId,productId,quantity)=>{
+const AddToCart = async (orderId,productId,quantity,productName)=>{
         try{
             let duplicatecheck = false
             const getResponse = await axios.get(`/api/orders_products/order/${orderId}`)
@@ -16,6 +16,7 @@ const AddToCart = async (orderId,productId,quantity)=>{
                     //console.log("newQuantity: ",newQuantity)
                     const addQuantity = await axios.patch(`/api/orders_products/quantity/${element.id}`,newQuantity)
                     //console.log("addQuantity",addQuantity)
+                    alert(`${quantity} ${productName} was added to the cart`)
                 }
             })
             if(duplicatecheck===false){
@@ -27,6 +28,7 @@ const AddToCart = async (orderId,productId,quantity)=>{
                 //console.log("requiredparams: ",requiredParams)
                 const postResponse = await axios.post(`/api/orders_products/order/${orderId}`,requiredParams)
                 //console.log("added ",postResponse.data)
+                alert(`${quantity} ${productName} was added to the cart`)
             }
         }
         catch(error){
