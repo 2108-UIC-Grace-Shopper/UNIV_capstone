@@ -16,12 +16,11 @@ const Register = (props) => {
             if(password === passwordconfirm){
                 const registrationResponse = await axios.post("/api/users/register",user)
                 setToken(registrationResponse.data.token)
-                console.log("userId: ",registrationResponse.data.user.id)
+                //console.log("userId: ",registrationResponse.data.user.id)
                 localStorage.setItem("token",registrationResponse.data.token)
-                //the below lines will have need to have a createOrder function with them.
-                //const gotOrderId = await axios.get(`/api/orders/users/${registrationResponse.data.user.id}`)
-                //console.log ("gotOrderId: ",gotOrderId)
-                // setOrderId(gotOrderId.data[0].id)
+                const newOrder = await axios.post(`/api/orders/users/${registrationResponse.data.user.id}`)
+                //console.log ("newOrder: ",newOrder)
+                setOrderId(newOrder.data.id)
                 props.history.push("/products")
             }
             else{
