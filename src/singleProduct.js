@@ -1,5 +1,6 @@
 // import { serialize } from "pg-protocol";
 import React from "react";
+import AddToCart from "./addorders_products";
 
 const SingleProduct = () => {
     return (
@@ -15,7 +16,7 @@ const SingleProduct = () => {
             <p className="fact-line"><span class="fact-name">Price:</span><span>$27.99</span></p>
             
             </section>
-        </div>
+        </div> 
 
     );
 }
