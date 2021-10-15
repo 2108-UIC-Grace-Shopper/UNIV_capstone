@@ -45,6 +45,7 @@ const Products = (props) => {
                     <h3 className="item-name"><span>{element.name}</span><i className="add-item material-icons" onClick = {()=>{handleAddToCart(element.id)}}>add_shopping_cart</i></h3>
                     <img className="item-image" src={element.image} alt={element.name}/>
                     <p className="item-description">{element.description}</p>
+                    <button className='desBtn'><Link to = "/singleProduct">View</Link></button>
                     <p className="fact-line"><span className="fact-name">Price:</span><span>{element.price}</span></p>
                   </div>
                 )

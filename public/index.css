@@ -70,7 +70,7 @@ flex-direction: column;
 border: 50px solid #f1f1f1;
 justify-content: center;
 }
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
 width: 25%;
 padding: 12px 20px;
 margin: 8px 0;
