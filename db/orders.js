@@ -2,6 +2,7 @@ const client = require('./client')
 
 async function createOrder({usersId, status}){
     try{
+        // console.log("usersId: ",usersId," status: ",status)
         const {rows: [order]} = await client.query(`
         INSERT INTO orders("usersId", status)
         VALUES ($1,$2)
@@ -55,11 +56,28 @@ async function getOrderIdByUserId(userId,status){
     }
 }
 
+async function updateOrder(id,status){
+    try{
+        const{rows:updateOrderId} = await client.query(`
+        UPDATE orders
+        SET status = $2
+        WHERE id = $1
+        RETURNING *
+        `,[id,status])
+        return updateOrderId
+    }
+    catch(error){
+        console.log('ERROR @ updateOrder FUNCTION')
+        throw error
+    }
+}
+
 module.exports = {
     createOrder,
     getOrderById,
     getAllOrders,
-    getOrderIdByUserId
+    getOrderIdByUserId,
+    updateOrder
 }
 
 

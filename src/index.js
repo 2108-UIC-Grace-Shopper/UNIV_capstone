@@ -86,7 +86,9 @@ const App = () => {
                     <Cart
                         {...renderprops}
                         token={token}
+                        orderId={orderId}
                         setOrderId={setOrderId}
+                        user={user}
                     />}
                 />
                  <Route //singleProduct

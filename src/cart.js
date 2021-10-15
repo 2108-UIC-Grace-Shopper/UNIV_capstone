@@ -1,9 +1,10 @@
 
 import React,{useState,useEffect} from "react";
 import axios from "axios"
+import { Checkout } from "./utils";
 
 const Cart = (props) => {
-  const {token,orderId,setOrderId} = props
+  const {token,orderId,setOrderId,user} = props
   //console.log("props-orderId: ",orderId)
   //console.log(`/api/products/order/${orderId}`)
 
@@ -13,6 +14,7 @@ const Cart = (props) => {
   useEffect(()=>{
     const loadOrderProductsData = async()=>{
       console.log("---start to load data---")
+      //console.log("orderId: ",orderId)
       const orderProductsResponse = await axios.get(`/api/products/order/${orderId}`)
       //console.log("orderProductsResponse: ",orderProductsResponse)
       setOrderProducts(orderProductsResponse.data)
@@ -21,12 +23,26 @@ const Cart = (props) => {
       loadOrderProductsData()
     }
     else if(!orderId){
+      console.log("no orderId")
       setOrderProducts([])
     }
   },[orderId])
+  //console.log("orderProducts: ",orderProducts)
+  //console.log("orderProducts.length: ",orderProducts.length)
 
-  console.log("orderProducts: ",orderProducts)
   let totalCalc = 0
+
+  const handleCheckout = async ()=>{
+    if(orderProducts.length > 0){
+      let newOrder=await Checkout(orderId,user.id)
+      console.log("newOrder: ",newOrder)
+      setOrderId(newOrder)
+    }
+    else{
+      console.log("No Items in Cart")
+      alert("Notice: There are no items in your cart")
+    }
+  }
   
     return (
         <div>
@@ -50,7 +66,7 @@ const Cart = (props) => {
     {/* <!-- start of checkout section --> */}
             <nav className="checkout-description">
               <p className="totalPrice">Total: ${totalCalc}</p>
-              <button type="submit">Checkout</button>
+              <button type="submit" onClick={()=>{handleCheckout()}}>Checkout</button>
             </nav>
         </div>
     //         <div>

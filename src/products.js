@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios"
-import AddToCart from "./addorders_products"
+import {AddToCart} from "./utils"
 
 
 const Products = (props) => {
@@ -21,7 +21,7 @@ const Products = (props) => {
   },[])
   //console.log("products: ",products)
 
-  function handleAddToCart(productId){
+  const handleAddToCart = (productId)=>{
     console.log("---start add to cart---")
     setProductId(productId)
     //have to figure out quantity later
@@ -30,6 +30,7 @@ const Products = (props) => {
     }
     else{
       console.log("DO LATER - design guest cart later")
+      alert("Guest cart is not available at this time")
     }
     console.log("---end add to cart---")
   }
