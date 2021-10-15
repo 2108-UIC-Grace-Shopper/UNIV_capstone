@@ -3,7 +3,7 @@ import React,{useState,useEffect} from "react";
 import axios from "axios"
 
 const Cart = (props) => {
-  const {token,orderId,setOrderId} = props
+  const {token,orderId,setOrderId, onRemove} = props
   //console.log("props-orderId: ",orderId)
   //console.log(`/api/products/order/${orderId}`)
 
@@ -28,6 +28,7 @@ const Cart = (props) => {
   console.log("orderProducts: ",orderProducts)
   let totalCalc = 0
   
+  
     return (
         <div>
             <h1>Welcome to the Cart!</h1>
@@ -41,7 +42,7 @@ const Cart = (props) => {
                   <p id="itemQuantity">Qty: {element.quantity}</p>
                   <sub id="priceRemove">
                   <p className="itemPrice">Price: ${element.price * element.quantity}</p>
-                  <button className="RemoveItem">Remove</button>
+                  <button className="RemoveItem" onClick={() => onRemove(element)}>Remove</button>
                   </sub>
                 </section>
                 )

@@ -9,6 +9,7 @@ import Products from "./products";
 import Register from "./register"
 import Cart from "./cart.js"
 import SingleProduct from "./singleProduct";
+import onRemove from "./deleteorders_products"
 
 
 const App = () => {
@@ -87,6 +88,8 @@ const App = () => {
                         {...renderprops}
                         token={token}
                         setOrderId={setOrderId}
+                        orderId={orderId}
+                        onRemove={onRemove}
                     />}
                 />
                  <Route //singleProduct
