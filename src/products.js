@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios"
+import {BrowserRouter as Router,Route,Link, Redirect} from "react-router-dom"
 import {AddToCart} from "./utils"
 
 
@@ -21,12 +22,12 @@ const Products = (props) => {
   },[])
   //console.log("products: ",products)
 
-  const handleAddToCart = (productId)=>{
+  const handleAddToCart = (productId,productName)=>{
     console.log("---start add to cart---")
     setProductId(productId)
     //have to figure out quantity later
     if(token){
-    AddToCart(orderId,productId,quantity)
+    AddToCart(orderId,productId,quantity,productName)
     }
     else{
       console.log("DO LATER - design guest cart later")
@@ -43,7 +44,7 @@ const Products = (props) => {
               {products.map(function(element){
                 return(
                   <div key={element.id} className="item">
-                    <h3 className="item-name"><span>{element.name}</span><i className="add-item material-icons" onClick = {()=>{handleAddToCart(element.id)}}>add_shopping_cart</i></h3>
+                    <h3 className="item-name"><span>{element.name}</span><i className="add-item material-icons" onClick = {()=>{handleAddToCart(element.id,element.name)}}>add_shopping_cart</i></h3>
                     <img className="item-image" src={element.image} alt={element.name}/>
                     <p className="item-description">{element.description}</p>
                     <button className='desBtn'><Link to = "/singleProduct">View</Link></button>
