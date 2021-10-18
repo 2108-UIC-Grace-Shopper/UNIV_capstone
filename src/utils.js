@@ -1,17 +1,11 @@
 import React from "react";
 import axios from "axios"
 
-const AddToCart = (orderId,productId,quantity)=>{
-    // const {token,orderId,productId,quantity}=props
-    //console.log("orderId: ",orderId)
-    //console.log("productId: ",productId)
-    //console.log("quantity: ",quantity)
-    
-    async function addToCart(){
+const AddToCart = async (orderId,productId,quantity,productName)=>{
         try{
             let duplicatecheck = false
             const getResponse = await axios.get(`/api/orders_products/order/${orderId}`)
-            console.log("getResponse: ",getResponse.data)
+            //console.log("getResponse: ",getResponse.data)
 
             getResponse.data.forEach(async function(element){
                 //console.log("getProductId: ",element.id)
@@ -22,10 +16,11 @@ const AddToCart = (orderId,productId,quantity)=>{
                     //console.log("newQuantity: ",newQuantity)
                     const addQuantity = await axios.patch(`/api/orders_products/quantity/${element.id}`,newQuantity)
                     //console.log("addQuantity",addQuantity)
+                    alert(`${quantity} ${productName} was added to the cart`)
                 }
             })
             if(duplicatecheck===false){
-                console.log("duplicatecheck: ",duplicatecheck)
+                //console.log("duplicatecheck: ",duplicatecheck)
                 let requiredParams = {
                     productId:productId,
                     quantity:quantity
@@ -33,14 +28,29 @@ const AddToCart = (orderId,productId,quantity)=>{
                 //console.log("requiredparams: ",requiredParams)
                 const postResponse = await axios.post(`/api/orders_products/order/${orderId}`,requiredParams)
                 //console.log("added ",postResponse.data)
+                alert(`${quantity} ${productName} was added to the cart`)
             }
         }
         catch(error){
             console.log("ERROR-addtocart",error)
             alert("There was an issue adding this item to your cart")
         }
-    }
-        addToCart()
 }
 
-export default AddToCart
+const Checkout =async (orderId,userId)=>{
+    try{
+        console.log("UTILS: orderId: ",orderId," userId",userId)
+        const requiredParams = {status:true}
+        const endCurrentOrder = await axios.patch(`/api/orders/${orderId}`,requiredParams)
+        console.log("updateCurrentOrder: ",endCurrentOrder)
+        const startNewOrder = await axios.post(`/api/orders/users/${userId}`)
+        console.log("startNewOrder: ",startNewOrder.data.id)
+        return startNewOrder.data.id
+    }
+    catch(error){
+        console.log("ERROR-addtocart",error)
+        alert("There was an issue checking out")
+    }
+}
+
+export {AddToCart,Checkout}

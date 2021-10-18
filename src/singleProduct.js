@@ -1,6 +1,6 @@
 // import { serialize } from "pg-protocol";
 import React from "react";
-import AddToCart from "./addorders_products";
+import AddToCart from "./utils";
 
 const SingleProduct = () => {
     return (

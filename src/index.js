@@ -24,6 +24,7 @@ const App = () => {
             })
             setUser(gotUser.data)
             const gotOrderId = await axios.get(`/api/orders/users/${gotUser.data.id}`)
+            //console.log("gotOrderId: ",gotOrderId.data[0].id)
             setOrderId(gotOrderId.data[0].id)
         }
         
@@ -54,11 +55,11 @@ const App = () => {
         <div>
             
                 <Route //products
-                path = "/products"
-                render={()=>
+                    path = "/products"
+                    render={()=>
                     <Products
-                    token={token}
-                    orderId={orderId}
+                        token={token}
+                        orderId={orderId}
                     />}
                 />
                 <Route //Login
@@ -86,13 +87,21 @@ const App = () => {
                     <Cart
                         {...renderprops}
                         token={token}
+                        orderId={orderId}
                         setOrderId={setOrderId}
+                        user={user}
                     />}
                 />
                  <Route //singleProduct
                 path = "/singleProduct"
                 render={()=>
                     <SingleProduct
+                    />}
+                />
+                <Route //home
+                    exact path = "/"
+                    render={()=>
+                    <HomePage
                     />}
                 />
         </div>
