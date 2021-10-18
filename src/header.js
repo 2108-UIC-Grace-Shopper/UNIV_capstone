@@ -14,12 +14,13 @@ function logoutFunc(event){
 
     return (
     <div className="dropdown">
+
     <button className="dropbtn">Menu</button>
-    <button className="material-icons md-48 md-dark"><Link to = "/cart">CART</Link></button>
+    <a id="cart-link" className="material-icons md-48 md-dark"><Link to = "./cart">CART</Link></a>
     <div className="dropdown-content">
     <ul id="navigation">
         <li>
-          <a href="" className="material-icons md-48 md-dark"><Link to = "/">home</Link></a>
+          <a href="" className="material-icons md-48 md-dark">home</a>
         </li>
         <li>
           <a href="" target="_blank" className="material-icons md-48 md-dark">account_circle</a>
