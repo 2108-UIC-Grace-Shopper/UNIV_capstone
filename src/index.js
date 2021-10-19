@@ -15,6 +15,7 @@ const App = () => {
     const [token,setToken]=useState("")
     const [user,setUser]=useState("")
     const [orderId,setOrderId]=useState("")
+    const [productId,setProductId]=useState("")
 
 
     useEffect(()=>{
@@ -56,10 +57,13 @@ const App = () => {
             
                 <Route //products
                     path = "/products"
-                    render={()=>
+                    render={(renderprops)=>
                     <Products
+                        {...renderprops}
                         token={token}
                         orderId={orderId}
+                        productId={productId}
+                        setProductId={setProductId}
                     />}
                 />
                 <Route //Login
@@ -90,12 +94,18 @@ const App = () => {
                         orderId={orderId}
                         setOrderId={setOrderId}
                         user={user}
+                        productId={productId}
+                        setProductId={setProductId}
                     />}
                 />
                  <Route //singleProduct
                 path = "/singleProduct"
                 render={()=>
                     <SingleProduct
+                    token={token}
+                    orderId={orderId}
+                    productId={productId}
+                    setProductId={setProductId}
                     />}
                 />
                 <Route //home

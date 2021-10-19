@@ -42,11 +42,13 @@ async function getOrdersProductsByOrdersId(id){
     }
 }
 
-async function getOrdersProductsByProductId(id){
+async function getOrdersProductsByProductId(productId,orderId){
     try{
         const {rows} = await client.query(`
         SELECT * FROM orders_products
-        WHERE "productId" = ${id}`)
+        WHERE "productId" = $1
+        AND "orderId"= $2
+        `,[productId,orderId])
 
         return rows
     } catch(error){

@@ -1,10 +1,10 @@
 
 import React,{useState,useEffect} from "react";
 import axios from "axios"
-import { Checkout } from "./utils";
+import { Checkout,RemoveFromCart } from "./utils";
 
 const Cart = (props) => {
-  const {token,orderId,setOrderId,user} = props
+  const {token,orderId,setOrderId,user,productId,setProductId} = props
   //console.log("props-orderId: ",orderId)
   //console.log(`/api/products/order/${orderId}`)
 
@@ -26,7 +26,7 @@ const Cart = (props) => {
       console.log("no orderId")
       setOrderProducts([])
     }
-  },[orderId])
+  },[orderId,productId])
   //console.log("orderProducts: ",orderProducts)
   //console.log("orderProducts.length: ",orderProducts.length)
 
@@ -43,6 +43,15 @@ const Cart = (props) => {
       alert("Notice: There are no items in your cart")
     }
   }
+
+  const handleRemove = async (elementproductId,elementproductName)=>{
+    console.log("orderId: ",orderId," productId: ",elementproductId," productName: ",elementproductName)
+    //setProductId(elementproductId)
+    //console.log("STATE-productId: ",productId)
+    let deleteProduct = await RemoveFromCart(orderId,elementproductId,elementproductName)
+    console.log("deletedItem: ",deleteProduct)
+    setProductId(elementproductId)
+  }
   
     return (
         <div>
@@ -57,7 +66,7 @@ const Cart = (props) => {
                   <p id="itemQuantity">Qty: {element.quantity}</p>
                   <sub id="priceRemove">
                   <p className="itemPrice">Price: ${element.price * element.quantity}</p>
-                  <button className="RemoveItem">Remove</button>
+                  <button className="RemoveItem" onClick={()=>{handleRemove(element.id,element.name)}}>Remove</button>
                   </sub>
                 </section>
                 )
