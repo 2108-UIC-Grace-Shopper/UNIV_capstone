@@ -40,14 +40,14 @@ const Products = (props) => {
         <div>
           <main>
             <section className="items">
-              <h1>Look At Our Amazing Products</h1>
+              {/* <h1>Look At Our Amazing Products</h1> */}
               {products.map(function(element){
                 return(
                   <div key={element.id} className="item">
                     <h3 className="item-name"><span>{element.name}</span><i className="add-item material-icons" onClick = {()=>{handleAddToCart(element.id,element.name)}}>add_shopping_cart</i></h3>
-                    <img className="item-image" src={element.image} alt={element.name}/>
+                    <div className="item-image-box"><img className="item-image" src={element.image} alt={element.name}/></div>
                     <p className="item-description">{element.description}</p>
-                    <button className='desBtn'><Link to = "/singleProduct">View</Link></button>
+                    <button className='desBtn'><Link to = "/singleProduct" className="linkto-styleA">View</Link></button>
                     <p className="fact-line"><span className="fact-name">Price:</span><span>{element.price}</span></p>
                   </div>
                 )

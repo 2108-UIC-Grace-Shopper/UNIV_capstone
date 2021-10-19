@@ -1,23 +1,15 @@
   .dropbtn {
     background-color: #04AA6D;
     color: white;
-    padding: 10px;
-    margin-left: 0%;
+    padding: 60px;
     font-size: 16px;
-    border: solid black 1px;
-    
-  }
-  #cart-link {
-  
-  }
-  a {
-    text-decoration: none;
+    border: none;
   }
   
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
-    display: flex;
-    justify-content: space-between;
+    position: relative;
+    display: inline-block;
     
   }
   
@@ -30,7 +22,6 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     flex-direction: column;
-    margin-top: 50px;
   }
   
   /* Links inside the dropdown */
@@ -57,7 +48,6 @@
   }
   header {
       background-color: #04AA6D;
-      
   }
  .cartbtn {
   
@@ -104,7 +94,7 @@ display: flex;
 button:hover {
 opacity: 0.5;
 }
-p {
+.login-text {
   margin-left: 40%;
 }
 @media screen and (max-width: 300px) {
@@ -122,6 +112,7 @@ h1 {
   padding-top: 20px;
 }
 .items {
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -132,11 +123,15 @@ h1 {
 .item {
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: 0%;
+  /* flex-basis: 0%; *//*-mls comment out*/
+  width:40%;/*-mls*/
+  min-width: 400px;/*-mls*/
+  height: 700px;/*-mls*/
   margin-right: 12px;
   margin-bottom: 12px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   box-shadow: 0 2px 5px -2px black;
 }
 .item-name {
@@ -147,6 +142,24 @@ h1 {
   align-items: center;
   padding: 10px;
   font-size: 20px;
+}
+.material-icons:hover{/*-mls*/
+  cursor: pointer;
+  background-color: #3e8e41;
+}
+.item-image-box{/*-mls*/
+  height: 400px;
+  min-width: 400px;
+  /* width:90%; */
+  overflow:hidden;
+  border-top:10px solid #3e8e41;
+  border-bottom:10px solid #3e8e41;
+  display:flex;
+  justify-content: center;
+  align-content: center;
+}
+.item-image{/*-mls*/
+  
 }
 .fact-line {
   background-color:#3e8e41;
@@ -187,7 +200,7 @@ h1 {
 
 /* end of products CSS */
   /* start of cart CSS */
-  #itemDescription {
+  .itemDescription {
     
     border: solid 3px #04AA6D;
     width: 25%;
