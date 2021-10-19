@@ -21,18 +21,23 @@ const Products = (props) => {
   },[])
   //console.log("products: ",products)
 
-  const handleAddToCart = (productId,productName)=>{
+  const handleAddToCart = (assignProductId,productName)=>{
     console.log("---start add to cart---")
-    setProductId(productId)
+    setProductId(assignProductId)
     //have to figure out quantity later
     if(token){
-    AddToCart(orderId,productId,quantity,productName)
+    AddToCart(orderId,assignProductId,quantity,productName)
     }
     else{
       console.log("DO LATER - design guest cart later")
       alert("Guest cart is not available at this time")
     }
     console.log("---end add to cart---")
+  }
+
+  const handleSingleProductButton = (asignProductId)=>{
+    setProductId(asignProductId)
+    props.history.push("/singleProduct")
   }
 
      return (
@@ -46,7 +51,7 @@ const Products = (props) => {
                     <h3 className="item-name"><span>{element.name}</span><i className="add-item material-icons" onClick = {()=>{handleAddToCart(element.id,element.name)}}>add_shopping_cart</i></h3>
                     <div className="item-image-box"><img className="item-image" src={element.image} alt={element.name}/></div>
                     <p className="item-description">{element.description}</p>
-                    <button className='desBtn' onClick ={()=>{setProductId(element.id)}}><Link to = "/singleProduct" className="linkto-styleA">View</Link></button>
+                    <button className='desBtn' onClick ={()=>{handleSingleProductButton(element.id)}}><Link to = "/singleProduct" className="linkto-styleA">View</Link></button>
                     <p className="fact-line"><span className="fact-name">Price:</span><span>{element.price}</span></p>
                   </div>
                 )

@@ -87,11 +87,8 @@ margin: 8px 0;
 border: none;
 cursor: pointer;
 width: 25%;
-
-display: flex;
-}
-.login-button{/*mls moved from button*/
 margin-left: 40%;
+display: flex;
 }
 
 .linkto-styleA{/*mls*/
@@ -167,7 +164,8 @@ h1 {
   align-content: center;
 }
 .item-image{
-  height:100%;
+  width:100%;
+  max-width: 600px;
 }
 .fact-line {
   background-color:#3e8e41;

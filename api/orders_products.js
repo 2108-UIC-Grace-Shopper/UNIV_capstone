@@ -5,7 +5,8 @@ const { createOrdersProducts,
     updateOrdersProducts,
     updateOrdersProductsQuantity,
     deleteOrdersProducts,
-    getOrdersProductsByOrdersId}
+    getOrdersProductsByOrdersId,
+    getOrdersProductsByProductId}
     = require('../db')
 const { requireUser } = require('./utils')
 
@@ -132,6 +133,21 @@ orders_productsRouter.patch('/quantity/:id',async (req,res,next)=>{
     }
     catch(error){
         console.error("ERROR-patchOrdersProducts by orderId")
+        next(error)
+     }
+})
+
+//GET /api/orders_products/product/:productId/order/:orderId
+orders_productsRouter.get('/product/:productId/order/:orderId',async (req,res,next)=>{
+    try{
+        const {orderId,productId}=req.params
+        //console.log("req.body: ",req.body)
+        console.log("orderId: ",orderId," productId: ",productId)
+        const orders_productsIdResponse = await getOrdersProductsByProductId(productId,orderId)
+        res.send(orders_productsIdResponse)
+    }
+    catch(error){
+        console.error("ERROR-getOrdersProducts by productId")
         next(error)
      }
 })

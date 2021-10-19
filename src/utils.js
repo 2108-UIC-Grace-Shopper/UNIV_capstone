@@ -28,7 +28,7 @@ const AddToCart = async (orderId,productId,quantity,productName)=>{
                 //console.log("requiredparams: ",requiredParams)
                 const postResponse = await axios.post(`/api/orders_products/order/${orderId}`,requiredParams)
                 //console.log("added ",postResponse.data)
-                alert(`${quantity} ${productName} was added to the cart`)
+                alert(`${quantity} ${productName} has been added to the cart`)
             }
         }
         catch(error){
@@ -48,9 +48,27 @@ const Checkout =async (orderId,userId)=>{
         return startNewOrder.data.id
     }
     catch(error){
-        console.log("ERROR-addtocart",error)
+        console.log("ERROR-checkout",error)
         alert("There was an issue checking out")
     }
 }
 
-export {AddToCart,Checkout}
+const RemoveFromCart = async (orderId,productId,productName)=>{
+    try{
+         console.log("UTILS-orderId: ",orderId," productId: ",productId," productName: ",productName)
+        // const requiredParams = {productId:productId}
+        // console.log("required Params: ", requiredParams)
+        const getResponse = await axios.get(`/api/orders_products/product/${productId}/order/${orderId}`)
+        console.log("getResponse: ",getResponse.data[0].id)
+        const deleteResponse = await axios.delete (`/api/orders_products/${getResponse.data[0].id}`)
+        alert(`${productName} has been removed from the cart`)
+        return deleteResponse
+    }
+    catch(error){
+        console.log("ERROR-removefromcart",error)
+        alert("There was an issue removing your item from the cart")
+    }
+
+}
+
+export {AddToCart,Checkout,RemoveFromCart}

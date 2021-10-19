@@ -57,8 +57,9 @@ const App = () => {
             
                 <Route //products
                     path = "/products"
-                    render={()=>
+                    render={(renderprops)=>
                     <Products
+                        {...renderprops}
                         token={token}
                         orderId={orderId}
                         productId={productId}
@@ -93,6 +94,8 @@ const App = () => {
                         orderId={orderId}
                         setOrderId={setOrderId}
                         user={user}
+                        productId={productId}
+                        setProductId={setProductId}
                     />}
                 />
                  <Route //singleProduct
