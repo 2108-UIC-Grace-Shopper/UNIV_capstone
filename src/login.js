@@ -41,9 +41,9 @@ const LoginScreen = (props) => {
                         <input type="text" placeholder="Enter Username" name="uname" value = {username} onChange={function(event){setUsername(event.target.value)}} required/>
                         <label className="password"><p className="login-text">Password</p></label>
                         <input type="password" placeholder="Enter Password" name="psw" value = {password} onChange={function(event){setPassword(event.target.value)}} required/>
-                        <button type="submit">Login</button>
+                        <button className="login-button" type="submit">Login</button>
                         {/* <button type="submit">Register</button> */}
-                        <button style={signUpStyle}><Link to = "/register" className="linkto-styleA">Sign up</Link></button>
+                        <button className="login-button" style={signUpStyle}><Link to = "/register" className="linkto-styleA">Sign up</Link></button>
 
                 </form>
             </div>

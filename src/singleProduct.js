@@ -1,19 +1,49 @@
 // import { serialize } from "pg-protocol";
-import React from "react";
-import AddToCart from "./utils";
+import React,{useState,useEffect} from "react";
+import axios from "axios";
+import {AddToCart} from "./utils"
 
-const SingleProduct = () => {
+const SingleProduct = (props) => {
+    const {token,orderId,productId,setProductId}=props
+    const [product,setProduct]=useState([])
+    const[quantity,setQuantity]=useState(1)
+
+    useEffect(()=>{
+        console.log(productId)
+        const loadProductsData = async()=>{
+            console.log("---start to load data---")
+            const productResponse = await axios.get(`/api/products/${productId}`)
+            console.log("productResponse: ",productResponse.data)
+            setProduct(productResponse.data)
+          }
+          loadProductsData()
+    },[])
+
+    const handleAddToCart = (productId,productName)=>{
+        console.log("---start add to cart---")
+        setProductId(productId)
+        //have to figure out quantity later
+        if(token){
+        AddToCart(orderId,productId,quantity,productName)
+        }
+        else{
+          console.log("DO LATER - design guest cart later")
+          alert("Guest cart is not available at this time")
+        }
+        console.log("---end add to cart---")
+      }
+
     return (
         <div>
             <h1>Product Detail</h1>
             <section>
-            <h3 className="item-name"><span>Product Name</span>
-            <button style={btnStyling}className="add-item material-icons">add_shopping_cart</button></h3>
+            <h3 className="item-name"><span>{product.name}</span>
+            <button style={btnStyling}className="add-item material-icons" onClick = {()=>{handleAddToCart(product.id,product.name)}}>add_shopping_cart</button></h3>
             <sub className="picure-Description" style={{display: "flex"}}>
-            <img className="item-image" src="http://placeimg.com/240/200/tech?1" alt="product-name"/>
-            <p style={descriptionBox}className="item-description1">Product Description here</p>
+            <img className="item-image" src={product.image} alt="product-name"/>
+            <p style={descriptionBox}className="item-description1">{product.description}</p>
             </sub>
-            <p className="fact-line"><span class="fact-name">Price:</span><span>$27.99</span></p>
+            <p className="fact-line"><span className="fact-name">Price:</span><span>{product.price}</span></p>
             
             </section>
         </div> 

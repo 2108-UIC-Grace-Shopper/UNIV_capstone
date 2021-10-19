@@ -5,10 +5,9 @@ import {AddToCart} from "./utils"
 
 
 const Products = (props) => {
-  const {token,orderId}=props
+  const {token,orderId,productId,setProductId}=props
 
   const[products,setProducts]=useState([])
-  const[productId,setProductId]=useState("")
   const[quantity,setQuantity]=useState(1)
 
   useEffect(()=>{
@@ -47,7 +46,7 @@ const Products = (props) => {
                     <h3 className="item-name"><span>{element.name}</span><i className="add-item material-icons" onClick = {()=>{handleAddToCart(element.id,element.name)}}>add_shopping_cart</i></h3>
                     <div className="item-image-box"><img className="item-image" src={element.image} alt={element.name}/></div>
                     <p className="item-description">{element.description}</p>
-                    <button className='desBtn'><Link to = "/singleProduct" className="linkto-styleA">View</Link></button>
+                    <button className='desBtn' onClick ={()=>{setProductId(element.id)}}><Link to = "/singleProduct" className="linkto-styleA">View</Link></button>
                     <p className="fact-line"><span className="fact-name">Price:</span><span>{element.price}</span></p>
                   </div>
                 )

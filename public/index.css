@@ -87,10 +87,18 @@ margin: 8px 0;
 border: none;
 cursor: pointer;
 width: 25%;
-margin-left: 40%;
-display: flex;
 
+display: flex;
 }
+.login-button{/*mls moved from button*/
+margin-left: 40%;
+}
+
+.linkto-styleA{/*mls*/
+text-decoration: none;
+color:white;
+}
+
 button:hover {
 opacity: 0.5;
 }
@@ -126,7 +134,7 @@ h1 {
   /* flex-basis: 0%; *//*-mls comment out*/
   width:40%;/*-mls*/
   min-width: 400px;/*-mls*/
-  height: 700px;/*-mls*/
+  height: 600px;/*-mls*/
   margin-right: 12px;
   margin-bottom: 12px;
   display: flex;
@@ -145,21 +153,21 @@ h1 {
 }
 .material-icons:hover{/*-mls*/
   cursor: pointer;
-  background-color: #3e8e41;
+  background-color: #2d6e2f;
 }
 .item-image-box{/*-mls*/
   height: 400px;
   min-width: 400px;
   /* width:90%; */
   overflow:hidden;
-  border-top:10px solid #3e8e41;
-  border-bottom:10px solid #3e8e41;
+  border-top:10px solid #04AA6D;
+  border-bottom:10px solid #04AA6D;
   display:flex;
   justify-content: center;
   align-content: center;
 }
-.item-image{/*-mls*/
-  
+.item-image{
+  height:100%;
 }
 .fact-line {
   background-color:#3e8e41;
@@ -190,6 +198,11 @@ h1 {
   padding-bottom: 6px;
   padding-left: 6px;
 }
+.desBtn {/*mls*/
+border-radius:0px 50px 50px 0px;
+width:100px
+}
+
 @media only screen and (max-width: 768px) {
   body {
       font-size: x-large;
