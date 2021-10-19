@@ -200,7 +200,8 @@ h1 {
 }
 .desBtn {/*mls*/
 border-radius:0px 50px 50px 0px;
-width:100px
+width:100px;
+margin-left:0px;
 }
 
 @media only screen and (max-width: 768px) {
